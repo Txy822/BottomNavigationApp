@@ -1,4 +1,4 @@
-package com.tes.eat.anywhere.bottomnavigationapp
+package com.tes.eat.anywhere.bottomnavigationapp.ui
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.tes.eat.anywhere.bottomnavigationapp.R
 import com.tes.eat.anywhere.bottomnavigationapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
