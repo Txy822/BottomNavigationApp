@@ -22,4 +22,9 @@
         android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.news.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
 </navigation>
