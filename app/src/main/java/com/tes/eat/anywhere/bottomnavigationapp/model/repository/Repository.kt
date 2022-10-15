@@ -7,4 +7,6 @@ import retrofit2.Response
 interface Repository {
 
     suspend fun  getNews(): Response<News>
+
+    //suspend fun  getNewsTile(): Response<List<News>>
 }
