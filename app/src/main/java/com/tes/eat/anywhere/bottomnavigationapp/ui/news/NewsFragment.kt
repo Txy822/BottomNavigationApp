@@ -6,36 +6,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.tes.eat.anywhere.bottomnavigationapp.R
 import com.tes.eat.anywhere.bottomnavigationapp.databinding.FragmentNewsBinding
+import com.tes.eat.anywhere.bottomnavigationapp.model.data.news.News
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
 
-    private var _binding: FragmentNewsBinding? = null
+    lateinit var binding: FragmentNewsBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val viewModel by activityViewModels<NewsViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-
-        _binding = FragmentNewsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textNews
-        newsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentNewsBinding.inflate(inflater)
+        val swipeRefreshLayout = binding.swipeContainer
+        // observe the changes in viewmodel liveData
+        viewModel.news.observe(viewLifecycleOwner) {
+            setupUI(it)
         }
-        return root
+        viewModel.getNews()
+        swipeRefreshLayout.setOnRefreshListener{
+            // observe the changes in viewmodel liveData
+            viewModel.news.observe(viewLifecycleOwner) {
+                setupUI(it)
+            }
+            viewModel.getNews()
+            // This line is important as it explicitly refreshes only once
+            // If "true" it implicitly refreshes forever
+            swipeRefreshLayout.isRefreshing = false
+        }
+
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupUI(newsList: News) {
+        binding.rvNews.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = NewsAdapter(
+                newsList
+            )
+        }
     }
 }

@@ -25,6 +25,6 @@
     <fragment
         android:id="@+id/navigation_news"
         android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.news.NewsFragment"
-        android:label="fragment_news"
+        android:label="@string/title_news"
         tools:layout="@layout/fragment_news" />
 </navigation>
