@@ -12,16 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_bible"
+        android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.bible.BibleFragment"
+        android:label="@string/title_bible"
+        tools:layout="@layout/fragment_bible" >
+        <action
+            android:id="@+id/action_navigation_bible_to_navigation_bibleDetails"
+            app:destination="@id/navigation_bibleDetails" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_bibleDetails"
+        android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.bible.details.BibleDetailsFragment"
+        android:label="@string/title_bibleDetail"
+        tools:layout="@layout/fragment_bible_details" />
     <fragment
         android:id="@+id/navigation_news"
         android:name="com.tes.eat.anywhere.bottomnavigationapp.ui.news.NewsFragment"

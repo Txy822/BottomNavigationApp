@@ -1,5 +1,7 @@
 package com.tes.eat.anywhere.bottomnavigationapp.di
 
+import com.tes.eat.anywhere.bottomnavigationapp.model.remote.bible.BibleApi
+import com.tes.eat.anywhere.bottomnavigationapp.model.remote.bible.BibleApiDetails
 import com.tes.eat.anywhere.bottomnavigationapp.model.remote.news.NewsApi
 import com.tes.eat.anywhere.bottomnavigationapp.model.remote.news.NewsApiDetails
 import com.tes.eat.anywhere.bottomnavigationapp.model.repository.Repository
@@ -21,14 +23,20 @@ class AppModule {
         .build()
 
     @Provides
-    fun provideNewsAPI(retrofit: Retrofit): NewsApi =retrofit.create(NewsApi::class.java)
+    fun provideNewsApi(retrofit: Retrofit): NewsApi =retrofit.create(NewsApi::class.java)
 
+    @Provides
+    fun provideBibleApi(retrofit: Retrofit): BibleApi =retrofit
+        .newBuilder()
+        .baseUrl(BibleApiDetails.BASE_URL)
+        .build()
+        .create(BibleApi::class.java)
 
     @Provides
     fun provideRepository(
-        newsApi: NewsApi
+        newsApi: NewsApi,bibleApi:BibleApi
     ): Repository {
-        return RepositoryImpl(newsApi)
+        return RepositoryImpl(newsApi,bibleApi)
     }
 
 }
