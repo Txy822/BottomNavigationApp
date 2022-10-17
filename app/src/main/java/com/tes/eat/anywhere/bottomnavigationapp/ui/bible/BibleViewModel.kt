@@ -29,10 +29,8 @@ class BibleViewModel @Inject constructor(
 
             // verify if the response was successful
             if (bibleSectionList.isSuccessful) {
-                System.out.println("Bible is fetching data")
                 _bible.postValue(bibleSectionList.body())
             } else {
-                System.out.println("Bible is not fetching data")
                 _bible.postValue(Bible())
             }
         }
