@@ -37,6 +37,6 @@ class BibleViewModelTest {
 
     @Test
     fun testGetBible() {
-        //assertNotEquals(viewModel.getBible()., null)
+        assertNotEquals(viewModel.getBible(), null)
         }
     }

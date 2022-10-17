@@ -19,11 +19,10 @@ class FakeRepository:Repository {
 
     override suspend fun getBible(): Response<Bible> {
         val response=Bible("","","")
-       shouldReturnNetworkError=true
         return if(shouldReturnNetworkError){
            Response.success(Bible())
         } else {
-            Response.success(Bible("",""))
+            Response.success(Bible("Reference","Text"))
         }
     }
 }
